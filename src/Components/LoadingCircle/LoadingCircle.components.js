@@ -3,7 +3,7 @@ const LoadingCircle = ({ size }) => {
 
 	return (
 		<img
-			src={require('../../Assets/SVG/Loader.svg').default}
+			src={require('../../Assets/SVG/LoadingCircle.svg').default}
 			alt="loading"
 			className="loader-main"
 			width={multipliedSize}

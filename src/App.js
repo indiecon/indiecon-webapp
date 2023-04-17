@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { Routes, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import MainLayout from './Layouts/MainLayout/MainLayout.layouts';
 import ListFoundersPage from './Pages/ListFoundersPage/ListFoundersPage.pages';
@@ -11,40 +12,40 @@ import fetchFounderProfileData from './Apis/fetchFounderProfileData.apis';
 import fetchStartupProfileData from './Apis/fetchStartupProfileData.apis';
 
 function App() {
+	const dispatch = useDispatch();
+
 	const [isLoading, setIsLoading] = useState(
 		window.localStorage.getItem('token') ? true : false
 	);
-	const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-	const [userProfileData, setUserProfileData] = useState(null);
-	const [startupProfileData, setStartupProfileData] = useState(null);
 
 	useEffect(() => {
 		const authToken = window.localStorage.getItem('token');
 		if (!authToken || !authToken.trim()) {
+			dispatch({ type: 'SIGN_OUT' });
+			dispatch({ type: 'REMOVE_FOUNDER_PROFILE' });
+			dispatch({ type: 'REMOVE_STARTUP_PROFILE' });
 			setIsLoading(false);
-			setUserProfileData(null);
-			setStartupProfileData(null);
 			return;
 		}
 
-		const fetchAndProcessData = async () => {
-			const userProfileResponse = await fetchFounderProfileData(authToken);
-
-			if (userProfileResponse.responseType === 'error') {
+		// get user and startup details from backend and set them in the state
+		const fetchAndProcessData = async (token) => {
+			const founderProfileResponse = await fetchFounderProfileData(token);
+			if (founderProfileResponse.responseType === 'error') {
 				toast.error(
-					userProfileResponse.responseMessage +
+					founderProfileResponse.responseMessage +
 						' (Error ID: ' +
-						userProfileResponse.responseId +
+						founderProfileResponse.responseId +
 						')'
 				);
 
 				window.localStorage.removeItem('token');
-				setUserProfileData(null);
-				setStartupProfileData(null);
-				return;
+				dispatch({ type: 'SIGN_OUT' });
+				dispatch({ type: 'REMOVE_FOUNDER_PROFILE' });
+				dispatch({ type: 'REMOVE_STARTUP_PROFILE' });
 			}
 
-			const startupProfileResponse = await fetchStartupProfileData(authToken);
+			const startupProfileResponse = await fetchStartupProfileData(token);
 			if (startupProfileResponse.responseType === 'error') {
 				toast.error(
 					startupProfileResponse.responseMessage +
@@ -54,19 +55,23 @@ function App() {
 				);
 
 				window.localStorage.removeItem('token');
-				setUserProfileData(null);
-				setStartupProfileData(null);
-				return;
+				dispatch({ type: 'SIGN_OUT' });
+				dispatch({ type: 'REMOVE_FOUNDER_PROFILE' });
+				dispatch({ type: 'REMOVE_STARTUP_PROFILE' });
 			}
 
-			setUserProfileData(userProfileResponse.responsePayload);
-			setStartupProfileData(startupProfileResponse.responsePayload);
-			setIsUserLoggedIn(true);
+			const founderProfile = founderProfileResponse.responsePayload;
+			dispatch({ type: 'ADD_FOUNDER_PROFILE', payload: founderProfile });
+
+			const startupProfile = startupProfileResponse.responsePayload;
+			dispatch({ type: 'ADD_STARTUP_PROFILE', payload: startupProfile });
+
+			dispatch({ type: 'SIGN_IN' });
 			setIsLoading(false);
 		};
 
-		fetchAndProcessData();
-	}, []);
+		fetchAndProcessData(authToken);
+	}, [dispatch]);
 
 	return isLoading ? (
 		<div
