@@ -1,18 +1,22 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { Routes, Route } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import MainLayout from './Layouts/MainLayout/MainLayout.layouts';
 import ListFoundersPage from './Pages/ListFoundersPage/ListFoundersPage.pages';
 import ErrorPage from './Pages/ErrorPage/ErrorPage.pages';
 import LoadingCircle from './Components/LoadingCircle/LoadingCircle.components';
+import FounderProfilePage from './Pages/FounderProfilePage/FounderProfilePage.pages';
+import StartupProfilePage from './Pages/StartupProfilePage/StartupProfilePage.pages';
 
 import fetchFounderProfileData from './Apis/fetchFounderProfileData.apis';
 import fetchStartupProfileData from './Apis/fetchStartupProfileData.apis';
 
 function App() {
 	const dispatch = useDispatch();
+
+	const isLoggedIn = useSelector((state) => state.userSession.sessionActive);
 
 	const [isLoading, setIsLoading] = useState(
 		window.localStorage.getItem('token') ? true : false
@@ -88,6 +92,12 @@ function App() {
 		<MainLayout>
 			<Routes>
 				<Route path="/" element={<ListFoundersPage />} />
+				{isLoggedIn && (
+					<>
+						<Route path="/founder-profile" element={<FounderProfilePage />} />
+						<Route path="/startup-profile" element={<StartupProfilePage />} />
+					</>
+				)}
 				<Route path="*" element={<ErrorPage />} />
 			</Routes>
 		</MainLayout>

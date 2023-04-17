@@ -1,0 +1,41 @@
+.innernav__main {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 2vh;
+}
+.innernav__main .innernav__item {
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+.innernav__main .innernav__item:hover {
+  background-color: #edeff1;
+}
+.innernav__main .innernav__item--active {
+  background-color: #dfe7ff;
+}
+.innernav__main .innernav__item--active:hover {
+  background-color: #dfe7ff;
+}
+.innernav__main .innernav__item:first-child {
+  margin: 0 1rem 0 0;
+}
+.innernav__main .innernav__item__text {
+  padding: 0;
+  margin: 0;
+  color: #0f172a;
+  opacity: 0.7;
+  font-weight: 400;
+  cursor: pointer;
+  font-size: 1rem;
+}
+@media (max-width: 768px) {
+  .innernav__main .innernav__item__text {
+    font-size: 0.8rem;
+  }
+}
+.innernav__main .innernav__item__text--active {
+  color: #4a3ecb;
+  font-weight: 600;
+  opacity: 1;
+}/*# sourceMappingURL=InnerNav.components.css.map */

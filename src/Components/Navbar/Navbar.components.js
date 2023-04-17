@@ -34,6 +34,9 @@ const Navbar = () => {
 					loginResult.responseId +
 					')'
 			);
+
+			setLoginButtonLoading(false);
+			return;
 		}
 
 		const { token } = loginResult.responsePayload;
@@ -43,6 +46,9 @@ const Navbar = () => {
 					loginResult.responseId +
 					')'
 			);
+
+			setLoginButtonLoading(false);
+			return;
 		}
 
 		// set the token in local storage
