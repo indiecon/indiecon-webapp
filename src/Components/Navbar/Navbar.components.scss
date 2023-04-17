@@ -59,7 +59,9 @@
 				padding: 0;
 				margin: 0;
 				margin-left: 12px;
+			}
 
+			.login__text {
 				&::after {
 					content: ' with google';
 				}
@@ -68,12 +70,6 @@
 					&::after {
 						content: '';
 					}
-				}
-			}
-
-			.profile__text {
-				&::after {
-					content: '';
 				}
 			}
 		}

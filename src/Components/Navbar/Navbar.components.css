@@ -55,16 +55,13 @@
   margin: 0;
   margin-left: 12px;
 }
-.navbar .navbar__button button p::after {
+.navbar .navbar__button button .login__text::after {
   content: " with google";
 }
 @media (max-width: 600px) {
-  .navbar .navbar__button button p::after {
+  .navbar .navbar__button button .login__text::after {
     content: "";
   }
-}
-.navbar .navbar__button button .profile__text::after {
-  content: "";
 }
 .navbar .navbar__button .navbar__button__login--disabled {
   pointer-events: none;

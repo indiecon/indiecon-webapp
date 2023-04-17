@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link, useLocation } from 'react-router-dom';
 
 import './Navbar.components.css';
 import GoogleLogo from '../../Assets/SVG/GoogleLogo.svg';
 import ProfileIcon from '../../Assets/SVG/ProfileIcon.svg';
+import HomeIcon from '../../Assets/SVG/HomeIcon.svg';
 import logInWithGoogle from '../../Utils/logInWithGoogle.utils';
 import fetchFounderProfileData from '../../Apis/fetchFounderProfileData.apis';
 import fetchStartupProfileData from '../../Apis/fetchStartupProfileData.apis';
 
 const Navbar = () => {
 	const dispatch = useDispatch();
+
+	const location = useLocation();
+	const pathName = location.pathname;
+
 	// state to see if login button is loading or not (login in progress or not)
 	const [loginButtonLoading, setLoginButtonLoading] = useState(false);
 
@@ -93,18 +99,29 @@ const Navbar = () => {
 	return (
 		<nav className="navbar">
 			<div className="navbar__logo">
-				<h1 className="navbar__logo__text">indiecon</h1>
+				<Link to="/">
+					<h1 className="navbar__logo__text">indiecon</h1>
+				</Link>
 			</div>
 			<div className="navbar__button">
-				{isLoggedIn ? (
-					<button className="navbar__button__profile">
-						<img
-							src={ProfileIcon}
-							alt="login"
-							className="login__image--profile"
-						/>
-						<p className="profile__text">Profile</p>
-					</button>
+				{pathName !== '/' ? (
+					<Link to="/">
+						<button className="navbar__button__home">
+							<img src={HomeIcon} alt="login" className="login__image--home" />
+							<p className="home__text">Home</p>
+						</button>
+					</Link>
+				) : isLoggedIn ? (
+					<Link to="/founder-profile">
+						<button className="navbar__button__profile">
+							<img
+								src={ProfileIcon}
+								alt="profile"
+								className="login__image--profile"
+							/>
+							<p className="profile__text">Profile</p>
+						</button>
+					</Link>
 				) : loginButtonLoading ? (
 					<button className="navbar__button__login--disabled" disabled>
 						<img
