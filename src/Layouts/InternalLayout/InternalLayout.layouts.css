@@ -1,0 +1,18 @@
+.list-page__container {
+  width: 60%;
+  margin: auto;
+  margin-top: 5vh;
+}
+@media (max-width: 800px) {
+  .list-page__container {
+    width: 80%;
+  }
+}
+@media (max-width: 600px) {
+  .list-page__container {
+    width: 90%;
+  }
+}
+.list-page__container .internal_layout {
+  margin-bottom: 10vh;
+}/*# sourceMappingURL=InternalLayout.layouts.css.map */

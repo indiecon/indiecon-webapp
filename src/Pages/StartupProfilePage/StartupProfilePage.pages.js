@@ -36,7 +36,9 @@ const StartupProfilePage = () => {
 			// Test url. Must start with http or https
 			const urlRegex = /^(http|https):\/\/[a-zA-Z0-9-_.]+\.[a-zA-Z]{2,5}/;
 			if (!urlRegex.test(socialLink)) {
-				toast.error('Social link must be a valid url');
+				toast.error(
+					'Social link must be a valid url. Should start with http or https'
+				);
 				setSaveButtonLoading(false);
 				return;
 			}
@@ -46,15 +48,17 @@ const StartupProfilePage = () => {
 			// Test url. Must start with http or https
 			const urlRegex = /^(http|https):\/\/[a-zA-Z0-9-_.]+\.[a-zA-Z]{2,5}/;
 			if (!urlRegex.test(mainLink)) {
-				toast.error('Not a valid url');
+				toast.error(
+					'Website/App link must be a valid url. Should start with http or https'
+				);
 				setSaveButtonLoading(false);
 				return;
 			}
 		}
 
 		if (industry) {
-			if (industry.length < 4 || industry.length > 12) {
-				toast.error("Industry's name must be between 4 and 12 characters");
+			if (industry.length < 4 || industry.length > 15) {
+				toast.error("Industry's name must be between 4 and 15 characters");
 				setSaveButtonLoading(false);
 				return;
 			}

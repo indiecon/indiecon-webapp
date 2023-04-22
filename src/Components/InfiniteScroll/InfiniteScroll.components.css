@@ -1,0 +1,56 @@
+.scroll__container {
+  width: 100%;
+}
+.scroll__container .scroll__zero-results .zero-results__text {
+  text-align: center;
+  margin-top: 5vh;
+}
+.scroll__container .container__main .scroll__loading_or_message .scroll__loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5vh;
+}
+.scroll__container .container__main .scroll__loading_or_message .scroll__message {
+  text-align: center;
+  margin-top: 5vh;
+  color: rgba(15, 23, 42, 0.5843137255);
+}
+.scroll__container .navigation__buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+.scroll__container .navigation__buttons .navigation__button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  outline: none;
+  transition: 0.2s;
+}
+.scroll__container .navigation__buttons .navigation__button:hover {
+  transform: scale(1.1);
+  text-decoration: underline;
+}
+.scroll__container .navigation__buttons .navigation__button:active {
+  transform: scale(0.9);
+}
+.scroll__container .navigation__buttons .button--previous {
+  margin-right: 1vw;
+}
+.scroll__container .navigation__buttons .button--next {
+  margin-left: 1vw;
+}
+.scroll__container .navigation__buttons .button--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.scroll__container .navigation__buttons .button--disabled:hover {
+  transform: scale(1);
+  text-decoration: none;
+}
+.scroll__container .navigation__buttons .button--disabled:active {
+  transform: scale(1);
+}/*# sourceMappingURL=InfiniteScroll.components.css.map */

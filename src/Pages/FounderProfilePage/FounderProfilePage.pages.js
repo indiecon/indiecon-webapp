@@ -182,7 +182,7 @@ const FounderProfilePage = () => {
 							type="text"
 							name="twitterUsername"
 							placeholder="@johndoe"
-							value={'@' + updatedProfile.twitterUsername}
+							value={updatedProfile.twitterUsername}
 							className="content__fields__section__input"
 							onChange={(e) => {
 								setUpdatedProfile({

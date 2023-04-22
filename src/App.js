@@ -4,7 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import MainLayout from './Layouts/MainLayout/MainLayout.layouts';
-import ListFoundersPage from './Pages/ListFoundersPage/ListFoundersPage.pages';
+import ListPage from './Pages/ListPage/ListPage.pages';
 import ErrorPage from './Pages/ErrorPage/ErrorPage.pages';
 import LoadingCircle from './Components/LoadingCircle/LoadingCircle.components';
 import FounderProfilePage from './Pages/FounderProfilePage/FounderProfilePage.pages';
@@ -12,6 +12,8 @@ import StartupProfilePage from './Pages/StartupProfilePage/StartupProfilePage.pa
 
 import fetchFounderProfileData from './Apis/fetchFounderProfileData.apis';
 import fetchStartupProfileData from './Apis/fetchStartupProfileData.apis';
+import SingleItemPage from './Pages/SingleItemPage/SingleItemPage.pages';
+import EventPage from './Pages/Event/Event';
 
 function App() {
 	const dispatch = useDispatch();
@@ -35,7 +37,10 @@ function App() {
 		// get user and startup details from backend and set them in the state
 		const fetchAndProcessData = async (token) => {
 			const founderProfileResponse = await fetchFounderProfileData(token);
-			if (founderProfileResponse.responseType === 'error') {
+			if (
+				founderProfileResponse.responseType === 'error' ||
+				founderProfileResponse.responseCode === 404
+			) {
 				toast.error(
 					founderProfileResponse.responseMessage +
 						' (Error ID: ' +
@@ -47,10 +52,16 @@ function App() {
 				dispatch({ type: 'SIGN_OUT' });
 				dispatch({ type: 'REMOVE_FOUNDER_PROFILE' });
 				dispatch({ type: 'REMOVE_STARTUP_PROFILE' });
+
+				setIsLoading(false);
+				return;
 			}
 
 			const startupProfileResponse = await fetchStartupProfileData(token);
-			if (startupProfileResponse.responseType === 'error') {
+			if (
+				startupProfileResponse.responseType === 'error' ||
+				startupProfileResponse.responseCode === 404
+			) {
 				toast.error(
 					startupProfileResponse.responseMessage +
 						' (Error ID: ' +
@@ -62,6 +73,9 @@ function App() {
 				dispatch({ type: 'SIGN_OUT' });
 				dispatch({ type: 'REMOVE_FOUNDER_PROFILE' });
 				dispatch({ type: 'REMOVE_STARTUP_PROFILE' });
+
+				setIsLoading(false);
+				return;
 			}
 
 			const founderProfile = founderProfileResponse.responsePayload;
@@ -72,6 +86,8 @@ function App() {
 
 			dispatch({ type: 'SIGN_IN' });
 			setIsLoading(false);
+
+			return;
 		};
 
 		fetchAndProcessData(authToken);
@@ -91,7 +107,13 @@ function App() {
 	) : (
 		<MainLayout>
 			<Routes>
-				<Route path="/" element={<ListFoundersPage />} />
+				<Route path="/" element={<ListPage />} />
+				<Route path="/startups" element={<ListPage />} />
+				<Route path="/startup/:startupId" element={<SingleItemPage />} />
+				<Route path="/founder/:founderId" element={<SingleItemPage />} />
+				<Route path="/event" element={<EventPage />} />
+				<Route path="/event/google" element={<EventPage />} />
+
 				{isLoggedIn && (
 					<>
 						<Route path="/founder-profile" element={<FounderProfilePage />} />

@@ -95,11 +95,10 @@ const Navbar = () => {
 			toast.success('Logged in successfully!');
 
 			dispatch({ type: 'SIGN_IN' });
+			setLoginButtonLoading(false);
 		};
 
 		fetchAndProcessData();
-
-		setLoginButtonLoading(false);
 	};
 
 	return (
@@ -110,7 +109,7 @@ const Navbar = () => {
 				</Link>
 			</div>
 			<div className="navbar__button">
-				{pathName !== '/' ? (
+				{pathName !== '/' && pathName !== '/startups' ? (
 					<Link to="/">
 						<button className="navbar__button__home">
 							<img src={HomeIcon} alt="login" className="login__image--home" />

@@ -1,0 +1,105 @@
+.founder_card__container {
+	border: 1px solid rgba(190, 187, 243, 0.46);
+	border-radius: 12px;
+	margin-top: 2em;
+	padding: 1.5em;
+
+	.founder_card__header {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		margin-bottom: 20px;
+
+		.founder_card__header__left {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: flex-start;
+
+			.founder_header__founder-name {
+				padding: 0;
+				margin: 0;
+				color: #0f172a;
+				font-size: 1.4em;
+				margin-bottom: 6px;
+			}
+
+			.founder_header__founder-twitter {
+				padding: 0;
+				margin: 0;
+				color: #4f45e4;
+
+				:visited {
+					color: #4f45e4;
+				}
+
+				.founder_founder-twitter__link {
+					text-decoration: underline;
+
+					color: #4f45e4;
+
+					:visited {
+						color: #4f45e4;
+					}
+				}
+			}
+		}
+
+		.founder_card__header__right {
+			.founder_header__connect-button {
+				background-color: transparent;
+				border: 2px solid #4f45e4;
+				border-radius: 8px;
+				padding: 8px 16px;
+				color: #4f45e4;
+				font-size: 16px;
+				font-weight: 500;
+				cursor: pointer;
+				font-family: 'Syne', sans-serif;
+				transition: all 0.2s ease-in-out;
+			}
+		}
+	}
+
+	.founder_card__pills {
+		margin-bottom: 20px;
+
+		.founder_pill__container {
+			background-color: #4f45e4;
+			width: fit-content;
+			padding: 6px 24px;
+			border-radius: 48px;
+			font-size: 14px;
+			font-weight: 400;
+
+			.founder_pill__text {
+				margin: 0;
+				padding: 0;
+				color: #f7fafc;
+
+				:visited {
+					color: #f7fafc;
+				}
+
+				.founder_text__link {
+					text-decoration: underline;
+					color: #f7fafc;
+
+					:visited {
+						color: #f7fafc;
+					}
+				}
+			}
+		}
+	}
+
+	.founder_card__description-container {
+		.founder_card__description-text {
+			padding: 0;
+			margin: 0;
+			font-size: 18px;
+			color: #0f172a;
+			line-height: 1.3;
+		}
+	}
+}

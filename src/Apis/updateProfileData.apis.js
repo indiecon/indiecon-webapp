@@ -2,8 +2,6 @@ import generateCustomHeader from '../Utils/generateCustomHeader.utils';
 
 const updateProfileData = async ({ data, profileType, token }) => {
 	try {
-		console.log(data);
-
 		const backendUrl =
 			process.env.REACT_APP_BACKEND_URL + '/' + profileType + '/update';
 

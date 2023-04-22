@@ -1,0 +1,74 @@
+.scroll__container {
+	width: 100%;
+
+	.scroll__zero-results {
+		.zero-results__text {
+			text-align: center;
+			margin-top: 5vh;
+		}
+	}
+
+	.container__main {
+		.scroll__loading_or_message {
+			.scroll__loading {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin-top: 5vh;
+			}
+
+			.scroll__message {
+				text-align: center;
+				margin-top: 5vh;
+				color: #0f172a95;
+			}
+		}
+	}
+
+	.navigation__buttons {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-top: 5vh;
+		margin-bottom: 5vh;
+
+		.navigation__button {
+			border: none;
+			background-color: transparent;
+			cursor: pointer;
+			outline: none;
+			transition: 0.2s;
+
+			&:hover {
+				transform: scale(1.1);
+				text-decoration: underline;
+			}
+
+			&:active {
+				transform: scale(0.9);
+			}
+		}
+
+		.button--previous {
+			margin-right: 1vw;
+		}
+
+		.button--next {
+			margin-left: 1vw;
+		}
+
+		.button--disabled {
+			opacity: 0.5;
+			cursor: not-allowed;
+
+			&:hover {
+				transform: scale(1);
+				text-decoration: none;
+			}
+
+			&:active {
+				transform: scale(1);
+			}
+		}
+	}
+}

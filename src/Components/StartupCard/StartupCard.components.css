@@ -1,0 +1,118 @@
+.card__container {
+  border: 1px solid rgba(190, 187, 243, 0.46);
+  border-radius: 12px;
+  margin-top: 2em;
+  padding: 1.5em;
+}
+.card__container .card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+.card__container .card__header .card__header__left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.card__container .card__header .card__header__left .header__startup-name {
+  padding: 0;
+  margin: 0;
+  color: #0f172a;
+  font-size: 1.4em;
+  margin-bottom: 6px;
+}
+.card__container .card__header .card__header__left .header__founder-twitter {
+  padding: 0;
+  margin: 0;
+  color: #4f45e4;
+}
+.card__container .card__header .card__header__left .header__founder-twitter :visited {
+  color: #4f45e4;
+}
+.card__container .card__header .card__header__left .header__founder-twitter .founder-twitter__link {
+  text-decoration: underline;
+  color: #4f45e4;
+}
+.card__container .card__header .card__header__left .header__founder-twitter .founder-twitter__link :visited {
+  color: #4f45e4;
+}
+.card__container .card__header .card__header__right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+.card__container .card__header .card__header__right .header__mainLink {
+  color: #4f45e4;
+  text-decoration: underline;
+  margin-bottom: 6px;
+}
+.card__container .card__header .card__header__right .header__mainLink :visited {
+  color: #4f45e4;
+}
+.card__container .card__header .card__header__right .header__socialLink {
+  color: #4f45e4;
+  text-decoration: underline;
+}
+.card__container .card__header .card__header__right .header__socialLink :visited {
+  color: #4f45e4;
+}
+@media (max-width: 599px) {
+  .card__container .card__header .card__header__right {
+    display: none;
+  }
+}
+.card__container .card__pills {
+  margin-bottom: 20px;
+}
+.card__container .card__pills .pill__container {
+  background-color: #4f45e4;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 6px 24px;
+  border-radius: 48px;
+  font-size: 14px;
+  font-weight: 400;
+}
+.card__container .card__pills .pill__container .pill__text {
+  margin: 0;
+  padding: 0;
+  color: #f7fafc;
+}
+.card__container .card__description-container .card__description-text {
+  padding: 0;
+  margin: 0;
+  font-size: 18px;
+  color: #0f172a;
+  line-height: 1.3;
+}
+.card__container .card__header__down {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+.card__container .card__header__down .header__mainLink {
+  color: #4f45e4;
+  text-decoration: underline;
+  margin-bottom: 6px;
+}
+.card__container .card__header__down .header__mainLink :visited {
+  color: #4f45e4;
+}
+.card__container .card__header__down .header__socialLink {
+  color: #4f45e4;
+  text-decoration: underline;
+}
+.card__container .card__header__down .header__socialLink :visited {
+  color: #4f45e4;
+}
+@media (min-width: 600px) {
+  .card__container .card__header__down {
+    display: none;
+  }
+}/*# sourceMappingURL=StartupCard.components.css.map */
