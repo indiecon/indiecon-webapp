@@ -5,7 +5,7 @@ import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 
 const firebaseConfig = {
 	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-	authDomain: 'indiecon-tech.firebaseapp.com', // TODO change this to login.indiecon.co
+	authDomain: 'login.indiecon.co',
 	projectId: 'indiecon-tech',
 	storageBucket: 'indiecon-tech.appspot.com',
 	messagingSenderId: '325067307319',
