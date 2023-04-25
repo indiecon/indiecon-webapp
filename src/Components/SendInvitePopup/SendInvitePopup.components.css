@@ -1,0 +1,160 @@
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.modal .modal-content {
+  background-color: #f7fafc;
+  margin: auto;
+  padding: 20px;
+  border: 2px solid #4f45e4;
+  width: 60%;
+  border-radius: 12px;
+  margin-top: 5vh;
+  overflow: auto;
+}
+@media (max-width: 768px) {
+  .modal .modal-content {
+    width: 80%;
+  }
+}
+.modal .modal-content .modal__header .header__heading {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #4f45e4;
+  margin-bottom: 1rem;
+}
+.modal .modal-content .modal__header .header__info {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #343536;
+  margin-bottom: 1rem;
+}
+.modal .modal-content .modal__header hr {
+  width: 80%;
+  height: 0;
+  border: 1px solid #cccbd7;
+  border-radius: 12px;
+  margin-left: 0;
+  margin-bottom: 1rem;
+}
+.modal .modal-content .modal__form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 3vh;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .modal .modal-content .modal__form {
+    align-items: center;
+  }
+}
+.modal .modal-content .modal__form .field__container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  width: 80%;
+}
+@media (max-width: 768px) {
+  .modal .modal-content .modal__form .field__container {
+    width: 99%;
+  }
+}
+.modal .modal-content .modal__form .field__container .content__fields__section__label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #323438;
+  margin-bottom: 6px;
+}
+.modal .modal-content .modal__form .field__container .content__fields__section__input {
+  background-color: #f7fafc;
+  border: 1px solid #f7fafc;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #0f172a;
+  border: 1px solid #4f45e4;
+  font-family: "Syne", sans-serif;
+  width: 70%;
+}
+.modal .modal-content .modal__form .field__container .content__fields__section__input:focus {
+  border: 2px solid #4f45e4;
+  outline: none;
+}
+.modal .modal-content .modal__form .content__fields__section__textarea {
+  background-color: #f7fafc;
+  border: 1px solid #f7fafc;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #0f172a;
+  border: 1px solid #4f45e4;
+  font-family: "Syne", sans-serif;
+  resize: none;
+  height: 60px;
+}
+.modal .modal-content .modal__form .content__fields__section__textarea:focus {
+  border: 2px solid #4f45e4;
+  outline: none;
+}
+.modal .modal-content .modal__form .button__container {
+  display: flex;
+  align-items: center;
+}
+.modal .modal-content .modal__form .button__send {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #4f45e4;
+  border: 2px solid #4f45e4;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  padding: 6px 12px;
+  margin-right: 20px;
+}
+.modal .modal-content .modal__form .button__send:hover {
+  transform: scale(1.05);
+}
+.modal .modal-content .modal__form .button__send:active {
+  transform: scale(0.95);
+}
+.modal .modal-content .modal__form .button__send p {
+  color: #f7fafc;
+  font-size: 1.3em;
+  font-weight: 500;
+  font-family: "Syne", sans-serif;
+  padding: 0;
+  margin: 0;
+}
+.modal .modal-content .modal__form .button__cancel {
+  background-color: #f7fafc;
+  border: 2px solid #4f45e4;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  padding: 6px 12px;
+}
+.modal .modal-content .modal__form .button__cancel:hover {
+  transform: scale(1.05);
+}
+.modal .modal-content .modal__form .button__cancel:active {
+  transform: scale(0.95);
+}
+.modal .modal-content .modal__form .button__cancel p {
+  color: #0f172a;
+  font-size: 1.3em;
+  font-weight: 500;
+  font-family: "Syne", sans-serif;
+  padding: 0;
+  margin: 0;
+}/*# sourceMappingURL=SendInvitePopup.components.css.map */

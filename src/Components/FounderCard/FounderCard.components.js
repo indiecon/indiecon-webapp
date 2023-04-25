@@ -1,10 +1,12 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import './FounderCard.components.css';
 
 const FounderCard = ({ founder }) => {
+	const dispatch = useDispatch();
+
 	const firstName = founder.firstName || '';
 	const lastName = founder.lastName || '';
 	const twitterUsername = founder.twitterUsername || '';
@@ -40,6 +42,15 @@ const FounderCard = ({ founder }) => {
 			);
 			return;
 		}
+
+		dispatch({
+			type: 'OPEN_SEND_INVITE_POPUP',
+			payload: {
+				isOpen: true,
+				founderId: founder.id,
+				founderName: founder.firstName + ' ' + founder.lastName,
+			},
+		});
 	};
 
 	return (

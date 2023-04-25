@@ -13,7 +13,8 @@ import StartupProfilePage from './Pages/StartupProfilePage/StartupProfilePage.pa
 import fetchFounderProfileData from './Apis/fetchFounderProfileData.apis';
 import fetchStartupProfileData from './Apis/fetchStartupProfileData.apis';
 import SingleItemPage from './Pages/SingleItemPage/SingleItemPage.pages';
-import EventPage from './Pages/Event/Event';
+import GoogleRedirectPage from './Pages/GoogleRedirectPage/GoogleRedirectPage.pages';
+import InviteDetails from './Pages/InviteDetails/InviteDetails.pages';
 
 function App() {
 	const dispatch = useDispatch();
@@ -111,8 +112,8 @@ function App() {
 				<Route path="/startups" element={<ListPage />} />
 				<Route path="/startup/:startupId" element={<SingleItemPage />} />
 				<Route path="/founder/:founderId" element={<SingleItemPage />} />
-				<Route path="/event" element={<EventPage />} />
-				<Route path="/event/google" element={<EventPage />} />
+				<Route path="/invite/:inviteId" element={<InviteDetails />} />
+				<Route path="/google/redirect" element={<GoogleRedirectPage />} />
 
 				{isLoggedIn && (
 					<>

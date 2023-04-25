@@ -5,6 +5,7 @@ import founderProfileReducer from './founderProfile.reducers';
 import startupProfileReducer from './startupProfile.reducers';
 import founderListReducer from './foundersList.reducers';
 import startupListReducer from './startupsList.reducers';
+import invitePopupStateReducer from './invitePopupState.reducers';
 
 const rootReducer = combineReducers({
 	founderProfile: founderProfileReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
 	startupProfile: startupProfileReducer,
 	foundersList: founderListReducer,
 	startupsList: startupListReducer,
+	invitePopupState: invitePopupStateReducer,
 });
 
 export default rootReducer;

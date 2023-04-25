@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import './InternalLayout.layouts.css';
 import MainNotice from '../../Components/MainNotice/MainNotice.components';
@@ -10,7 +11,7 @@ import Footer from '../../Components/Footer/Footer.components';
 import FounderCard from '../../Components/FounderCard/FounderCard.components';
 import StartupCard from '../../Components/StartupCard/StartupCard.components';
 import fetchPublicProfileData from '../../Apis/fetchPublicProfileData.apis';
-import { toast } from 'react-toastify';
+import SendInvitePopup from '../../Components/SendInvitePopup/SendInvitePopup.components';
 
 const InternalLayout = () => {
 	const location = useLocation();
@@ -108,8 +109,16 @@ const InternalLayout = () => {
 		}
 	}, [navigate, pathName]);
 
+	const invitePopupState = useSelector((state) => state.invitePopupState);
+
 	return (
 		<>
+			{invitePopupState &&
+			invitePopupState.isOpen &&
+			invitePopupState.founderId &&
+			invitePopupState.founderName ? (
+				<SendInvitePopup />
+			) : null}
 			<div className="list__main-notice__container">
 				{shouldRenderMainNotice && <MainNotice />}
 			</div>

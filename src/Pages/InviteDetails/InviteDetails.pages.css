@@ -1,0 +1,78 @@
+.invite_details__loading_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+}
+
+.invite_details__container {
+  width: 60%;
+  margin: auto;
+  margin-top: 5vh;
+}
+@media (max-width: 600px) {
+  .invite_details__container {
+    width: 90%;
+  }
+}
+.invite_details__container .invite_details__section .section__header .section__heading {
+  color: #0f172a;
+  font-size: 1.6rem;
+}
+.invite_details__container .invite_details__section .section__header .section__description {
+  color: #595a5c;
+  font-size: 1.1rem;
+}
+.invite_details__container .invite_details__section .section__header .section_content__divider {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid #e0e0e0;
+}
+.invite_details__container .invite_details__section .section__content {
+  margin-top: 4vh;
+}
+.invite_details__container .invite_details__section .section__content .section_content__item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 2vh;
+}
+.invite_details__container .invite_details__section .section__content .section_content__item .section_content__item__label {
+  color: #595a5c;
+  font-size: 1rem;
+}
+.invite_details__container .invite_details__section .section__content .section_content__item .section_content__item__value {
+  margin: 8px 0;
+  color: #0f172a;
+  font-size: 1rem;
+  border: 2px solid #4f45e4;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  background-color: #fff;
+}
+.invite_details__container .invite_details__section .section__content .item__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.invite_details__container .invite_details__section .section__content .item__buttons .section_content__item__button {
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  border: 2px solid #4f45e4;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  background-color: #4f45e4;
+  color: #f7fafc;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  font-family: "Syne", sans-serif;
+}
+.invite_details__container .invite_details__section .section__content .item__buttons .section_content__item__button:hover {
+  background-color: #fff;
+  color: #4f45e4;
+}
+.invite_details__container .invite_details__section .section__content .item__buttons .section_content__item__button:active {
+  transform: scale(0.95);
+}/*# sourceMappingURL=InviteDetails.pages.css.map */

@@ -5,12 +5,12 @@ import { getAuth, GoogleAuthProvider } from 'firebase/auth';
 
 const firebaseConfig = {
 	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-	authDomain: 'indiecon-co.firebaseapp.com', // TODO change this to login.indiecon.co
-	projectId: 'indiecon-co',
-	storageBucket: 'indiecon-co.appspot.com',
-	messagingSenderId: '22974101461',
-	appId: '1:22974101461:web:e42a4d6c4167dd39a96f5c',
-	measurementId: 'G-7V7WF818S7',
+	authDomain: 'indiecon-tech.firebaseapp.com', // TODO change this to login.indiecon.co
+	projectId: 'indiecon-tech',
+	storageBucket: 'indiecon-tech.appspot.com',
+	messagingSenderId: '325067307319',
+	appId: '1:325067307319:web:f91dc994726d92620e02b2',
+	measurementId: 'G-DYKLR6H3GB',
 };
 
 const app = initializeApp(firebaseConfig);
