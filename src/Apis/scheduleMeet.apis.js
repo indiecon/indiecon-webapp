@@ -34,7 +34,6 @@ const scheduleMeet = async ({
 
 		return responseData;
 	} catch (error) {
-		console.log(error);
 		return {
 			responseType: 'error',
 			responseUniqueCode: 'webapp_error',

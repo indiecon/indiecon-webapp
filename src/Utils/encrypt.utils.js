@@ -19,7 +19,6 @@ const encrypt = (data) => {
 			responsePayload: encryptedString,
 		};
 	} catch (err) {
-		console.log(err);
 		return {
 			responseType: 'error',
 			responseUniqueCode: 'webapp_error',

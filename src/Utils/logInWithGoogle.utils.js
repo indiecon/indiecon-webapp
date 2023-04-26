@@ -7,7 +7,7 @@ import { auth, provider } from '../Config/firebase.config';
 const logInWithGoogle = async () => {
 	try {
 		const result = await signInWithPopup(auth, provider);
-		console.log(result);
+
 		const { user } = result;
 
 		if (!user || !user.email) {
