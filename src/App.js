@@ -15,6 +15,7 @@ import fetchStartupProfileData from './Apis/fetchStartupProfileData.apis';
 import SingleItemPage from './Pages/SingleItemPage/SingleItemPage.pages';
 import GoogleRedirectPage from './Pages/GoogleRedirectPage/GoogleRedirectPage.pages';
 import InviteDetails from './Pages/InviteDetails/InviteDetails.pages';
+import PrivacyPolicyPage from './Pages/PrivacyPolicyPage/PrivacyPolicyPage.pages';
 
 function App() {
 	const dispatch = useDispatch();
@@ -114,6 +115,7 @@ function App() {
 				<Route path="/founder/:founderId" element={<SingleItemPage />} />
 				<Route path="/invite/:inviteId" element={<InviteDetails />} />
 				<Route path="/google/redirect" element={<GoogleRedirectPage />} />
+				<Route path="/privacypolicy" element={<PrivacyPolicyPage />} />
 
 				{isLoggedIn && (
 					<>
