@@ -13,6 +13,8 @@ const GoogleRedirectPage = () => {
 	const queryParam = location.search;
 
 	useEffect(() => {
+		console.log(queryParam);
+
 		if (pathName === '/google/redirect') {
 			const code = queryParam.split('=')[1];
 			const inviteId = window.localStorage.getItem('inviteId');
