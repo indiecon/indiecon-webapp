@@ -44,6 +44,11 @@ const FounderCard = ({ founder }) => {
 			return;
 		}
 
+		if (founder.id === currentFounder.id) {
+			toast.error('You cannot connect with yourself');
+			return;
+		}
+
 		dispatch({
 			type: 'OPEN_SEND_INVITE_POPUP',
 			payload: {
