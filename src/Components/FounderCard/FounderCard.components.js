@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import './FounderCard.components.css';
 
 const FounderCard = ({ founder }) => {
+	const currentFounder = useSelector((state) => state.founderProfile);
 	const dispatch = useDispatch();
 
 	const firstName = founder.firstName || '';
@@ -72,12 +73,14 @@ const FounderCard = ({ founder }) => {
 					</a>
 				</div>
 				<div className="founder_card__header__right">
-					<button
-						className="founder_header__connect-button"
-						onClick={handleOnConnect}
-					>
-						Connect
-					</button>
+					{currentFounder.id === founder.id ? null : (
+						<button
+							className="founder_header__connect-button"
+							onClick={handleOnConnect}
+						>
+							Connect
+						</button>
+					)}
 				</div>
 			</div>
 			<div className="founder_card__pills">
