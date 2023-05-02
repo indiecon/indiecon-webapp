@@ -205,7 +205,7 @@ const InviteDetails = () => {
 									: inviteDetails.inviteDetails.inviteStatus === 'canceled'
 									? 'Your invite has been canceled'
 									: inviteDetails.inviteDetails.inviteStatus === 'accepted'
-									? `Your invite has been accepted. The calendar link is ${inviteDetails.inviteDetails.calendarLink}`
+									? `Your invite has been accepted. Find the details below.`
 									: inviteDetails.inviteDetails.inviteStatus === ''}
 							</p>
 							<hr className="section_content__divider" />
@@ -222,7 +222,7 @@ const InviteDetails = () => {
 											target="_blank"
 											rel="noreferrer"
 										>
-											{inviteDetails.inviteDetails.calendarLink}
+											Click Here
 										</a>
 									</p>
 								</div>

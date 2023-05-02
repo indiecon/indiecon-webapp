@@ -25,8 +25,8 @@ const StartupProfilePage = () => {
 		industry = industry ? industry.trim() : '';
 
 		if (name) {
-			if (name.length < 3 || name.length > 15) {
-				toast.error("Startup's name must be between 3 and 15 characters");
+			if (name.length < 2 || name.length > 15) {
+				toast.error("Startup's name must be between 2 and 15 characters");
 				setSaveButtonLoading(false);
 				return;
 			}

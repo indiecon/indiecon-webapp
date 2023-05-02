@@ -41,16 +41,16 @@ const FounderProfilePage = () => {
 
 		// if first name and last name exist, check if both of them are greater than 2 chars and less than 15 chars each
 		if (firstName) {
-			if (firstName.length < 3 || firstName.length > 12) {
-				toast.error('First name must be between 3 and 12 characters');
+			if (firstName.length < 2 || firstName.length > 15) {
+				toast.error('First name must be between 2 and 15 characters');
 				setSaveButtonLoading(false);
 				return;
 			}
 		}
 
 		if (lastName) {
-			if (lastName.length < 3 || lastName.length > 12) {
-				toast.error('Last name must be between 3 and 12 characters');
+			if (lastName.length < 2 || lastName.length > 15) {
+				toast.error('Last name must be between 2 and 15 characters');
 				setSaveButtonLoading(false);
 				return;
 			}
