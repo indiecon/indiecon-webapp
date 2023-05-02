@@ -75,4 +75,27 @@
 }
 .invite_details__container .invite_details__section .section__content .item__buttons .section_content__item__button:active {
   transform: scale(0.95);
+}
+.invite_details__container .invite_details__section .section__content .item__buttons .button__reject {
+  background-color: #f44336;
+  border-color: #f44336;
+}
+.invite_details__container .invite_details__section .section__content .item__buttons .button__reject:hover {
+  background-color: #fff;
+  color: #f44336;
+}
+.invite_details__container .invite_details__section .section__content .item__buttons .button__loading {
+  background-color: #fff;
+  color: #4f45e4;
+  border-color: #4f45e4;
+  cursor: not-allowed;
+}
+.invite_details__container .invite_details__section .section__content .item__buttons .button__loading:hover {
+  background-color: #fff;
+  color: #4f45e4;
+  border-color: #4f45e4;
+  cursor: not-allowed;
+}
+.invite_details__container .invite_details__section .section__content .item__buttons .button__loading:active {
+  transform: scale(1);
 }/*# sourceMappingURL=InviteDetails.pages.css.map */

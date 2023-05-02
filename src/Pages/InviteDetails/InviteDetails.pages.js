@@ -8,7 +8,6 @@ import './InviteDetails.pages.css';
 import LoadingCircle from '../../Components/LoadingCircle/LoadingCircle.components';
 import fetchInviteDetails from '../../Apis/fetchInviteDetails.apis';
 import updateInviteData from '../../Apis/updateInviteStatus.apis';
-import fetchGoogleAuthUrl from '../../Apis/fetchGoogleAuthUrl.apis';
 import scheduleMeet from '../../Apis/scheduleMeet.apis';
 
 const InviteDetails = () => {
@@ -21,13 +20,10 @@ const InviteDetails = () => {
 	const [inviteDetails, setInviteDetails] = useState({});
 	const [areButtonsLoading, setAreButtonsLoading] = useState(false);
 
-	const userSession = useSelector((state) => state.userSession.sessionActive);
 	const currentFounderData = useSelector((state) => state.founderProfile);
 
 	const handleStatusAccepted = async (status) => {
-		if (areButtonsLoading) {
-			return;
-		}
+		if (areButtonsLoading) return;
 
 		setAreButtonsLoading(true);
 
@@ -36,34 +32,58 @@ const InviteDetails = () => {
 			return;
 		}
 
-		// store invite id in local storage, also store the status(accepted1 or accepted2)
-		window.localStorage.setItem(
-			'inviteId',
-			inviteDetails.inviteDetails.inviteId
-		);
+		const authToken = window.localStorage.getItem('token');
+		const inviteId = inviteDetails.inviteDetails
+			? inviteDetails.inviteDetails.inviteId
+				? inviteDetails.inviteDetails.inviteId
+				: ''
+			: '';
 
-		window.localStorage.setItem('inviteStatus', status);
+		if (authToken && inviteId) {
+			const scheduleMeetHelper = async () => {
+				const response = await scheduleMeet({
+					inviteId,
+					token: authToken,
+					meetingAcceptedDateAndTimeId:
+						status === 'accepted1'
+							? 'meetingDateAndTimeOne'
+							: 'meetingDateAndTimeTwo',
+				});
 
-		// redirect to google login url that we get from backend
-		const response = await fetchGoogleAuthUrl(
-			window.localStorage.getItem('token')
-		);
+				if (
+					response.responseType === 'error' ||
+					response.responseCode === 404
+				) {
+					toast.error(
+						response.responseMessage +
+							' (Error ID: ' +
+							response.responseId +
+							')'
+					);
+					setAreButtonsLoading(false);
+					return;
+				}
 
-		if (response.responseType === 'error' || response.responseCode === 404) {
-			toast.error(
-				response.responseMessage + ' (Error ID: ' + response.responseId + ')'
-			);
-			setAreButtonsLoading(false);
-			return;
+				setInviteDetails(() => {
+					return response.responsePayload;
+				});
+
+				setAreButtonsLoading(false);
+				toast.success(response.responseMessage);
+
+				// open a new tab to the google meet link
+				window.open(
+					response.responsePayload.inviteDetails.calendarLink,
+					'_blank'
+				);
+			};
+
+			scheduleMeetHelper();
 		}
-
-		window.location.href = response.responsePayload;
 	};
 
 	const handleStatusUpdate = async (status) => {
-		if (areButtonsLoading) {
-			return;
-		}
+		if (areButtonsLoading) return;
 
 		setAreButtonsLoading(true);
 		if (status === 'canceled' || status === 'rejected') {
@@ -110,66 +130,7 @@ const InviteDetails = () => {
 
 	useEffect(() => {
 		const inviteId = location.pathname ? location.pathname.split('/')[2] : '';
-		const { token, code } = queryString.parse(location.search);
-
-		if (code) {
-			// check if jwt is present, invite status, code is present and invite id is present in local storage
-			const googleCode = window.localStorage.getItem('code');
-			const authToken = window.localStorage.getItem('token');
-			const inviteId = window.localStorage.getItem('inviteId');
-			const inviteStatus = window.localStorage.getItem('inviteStatus');
-
-			if (
-				googleCode &&
-				authToken &&
-				inviteId &&
-				(inviteStatus === 'accepted1' || inviteStatus === 'accepted2')
-			) {
-				const scheduleMeetHelper = async () => {
-					const response = await scheduleMeet({
-						inviteId,
-						googleCode,
-						token: authToken,
-						meetingAcceptedDateAndTimeId:
-							inviteStatus === 'accepted1'
-								? 'meetingDateAndTimeOne'
-								: 'meetingDateAndTimeTwo',
-					});
-
-					if (
-						response.responseType === 'error' ||
-						response.responseCode === 404
-					) {
-						toast.error(
-							response.responseMessage +
-								' (Error ID: ' +
-								response.responseId +
-								')'
-						);
-						setAreButtonsLoading(false);
-						return;
-					}
-
-					setInviteDetails((prevState) => {
-						return response.responsePayload;
-					});
-
-					window.localStorage.removeItem('inviteId');
-					window.localStorage.removeItem('inviteStatus');
-					window.localStorage.removeItem('code');
-					setAreButtonsLoading(false);
-					toast.success(response.responseMessage);
-
-					return navigate('/invite/' + inviteId);
-				};
-
-				scheduleMeetHelper();
-			}
-		}
-
-		window.localStorage.removeItem('inviteId');
-		window.localStorage.removeItem('inviteStatus');
-		window.localStorage.removeItem('code');
+		const { token } = queryString.parse(location.search);
 
 		if (token) {
 			window.localStorage.setItem('token', token);
@@ -223,7 +184,6 @@ const InviteDetails = () => {
 		location.pathname,
 		location.search,
 		navigate,
-		userSession,
 	]);
 
 	return (
@@ -245,19 +205,25 @@ const InviteDetails = () => {
 									: inviteDetails.inviteDetails.inviteStatus === 'canceled'
 									? 'Your invite has been canceled'
 									: inviteDetails.inviteDetails.inviteStatus === 'accepted'
-									? `Your invite has been accepted. The meet link is ${inviteDetails.inviteDetails.meetingLink}`
+									? `Your invite has been accepted. The calendar link is ${inviteDetails.inviteDetails.calendarLink}`
 									: inviteDetails.inviteDetails.inviteStatus === ''}
 							</p>
 							<hr className="section_content__divider" />
 						</div>
 						<div className="section__content">
-							{inviteDetails.inviteDetails.meetingLink ? (
+							{inviteDetails.inviteDetails.calendarLink ? (
 								<div className="section_content__item">
 									<span className="section_content__item__label">
-										Meeting Link
+										Calendar Link
 									</span>
 									<p className="section_content__item__value">
-										{inviteDetails.inviteDetails.meetingLink}
+										<a
+											href={inviteDetails.inviteDetails.calendarLink}
+											target="_blank"
+											rel="noreferrer"
+										>
+											{inviteDetails.inviteDetails.calendarLink}
+										</a>
 									</p>
 								</div>
 							) : null}
@@ -384,7 +350,16 @@ const InviteDetails = () => {
 								</p>
 							</div>
 							{inviteDetails.inviteDetails.inviteStatus === 'pending' ? (
-								userType === 'invitee' ? (
+								areButtonsLoading ? (
+									<div className="section_content__item item__buttons">
+										<button
+											className="section_content__item__button button__loading"
+											disabled={true}
+										>
+											Loading ...
+										</button>
+									</div>
+								) : userType === 'invitee' ? (
 									<div className="section_content__item item__buttons">
 										<button
 											className="section_content__item__button"
@@ -399,7 +374,7 @@ const InviteDetails = () => {
 											Accept Time Two
 										</button>
 										<button
-											className="section_content__item__button"
+											className="section_content__item__button button__reject"
 											onClick={() => handleStatusUpdate('rejected')}
 										>
 											Reject Invite
@@ -440,10 +415,10 @@ const InviteDetails = () => {
 									{inviteDetails.inviteDetails.inviteStatus}
 								</p>
 							</div>
-							{inviteDetails.inviteDetails.meetingLink ? null : (
+							{inviteDetails.inviteDetails.calendarLink ? null : (
 								<div className="section_content__item">
 									<span className="section_content__item__label">
-										Meeting Link
+										Calendar Link
 									</span>
 									<p className="section_content__item__value">N/A</p>
 								</div>

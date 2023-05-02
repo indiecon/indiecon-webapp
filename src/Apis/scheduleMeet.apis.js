@@ -3,7 +3,6 @@ import generateCustomHeader from '../Utils/generateCustomHeader.utils';
 const scheduleMeet = async ({
 	inviteId,
 	token,
-	googleCode,
 	meetingAcceptedDateAndTimeId,
 }) => {
 	try {
@@ -25,7 +24,6 @@ const scheduleMeet = async ({
 						: '',
 			},
 			body: JSON.stringify({
-				googleCode,
 				meetingAcceptedDateAndTimeId,
 			}),
 		});
