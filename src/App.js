@@ -15,6 +15,7 @@ import fetchStartupProfileData from './Apis/fetchStartupProfileData.apis';
 import SingleItemPage from './Pages/SingleItemPage/SingleItemPage.pages';
 import InviteDetails from './Pages/InviteDetails/InviteDetails.pages';
 import PrivacyPolicyPage from './Pages/PrivacyPolicyPage/PrivacyPolicyPage.pages';
+import LaunchPage from './Pages/LaunchPage/LaunchPage.pages';
 
 function App() {
 	const dispatch = useDispatch();
@@ -114,6 +115,7 @@ function App() {
 				<Route path="/founder/:founderId" element={<SingleItemPage />} />
 				<Route path="/invite/:inviteId" element={<InviteDetails />} />
 				<Route path="/privacypolicy" element={<PrivacyPolicyPage />} />
+				<Route path="/launch/:platform" element={<LaunchPage />} />
 
 				{isLoggedIn && (
 					<>
